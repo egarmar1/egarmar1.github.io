@@ -5,7 +5,7 @@ excerpt: "¡Qué pereza!. Esta sea probablemente la primera frase que te llegue 
 date: 2024-10-03
 classes: wide
 header:
-  teaser: /assets/images/htb-writeup-delivery/openAPIImage.png
+  teaser: /assets/images/OpenAPI/openAPIImage.png
   teaser_home_page: true
   icon: /assets/images/openAPIImage.png
 categories:
