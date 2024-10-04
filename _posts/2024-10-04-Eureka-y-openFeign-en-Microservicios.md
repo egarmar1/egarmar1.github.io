@@ -1,6 +1,6 @@
 ---
 layout: single
-title: 2024-09-30-Eureka-y-openFeign-para-la-comunicación-entre-Microservicios
+title: Eureka y openFeign para la comunicación entre Microservicios
 excerpt: "Kubernetes se ha convertido en el rey de la gestión de microservicios, pero no te creas que es siempre conveniente.
 
 Por ejemplo, Kubernetes requiere muchos recursos para poder funcionar, cosa que no cualquier empresa se puede permitir.
@@ -25,7 +25,6 @@ tags:
   - SpringBoot
 ---
 
-![](/assets/images/OpenAPI/Pasted image 20240930160112.png)
 
 
 ## Eureka y OpenFeign
@@ -38,7 +37,9 @@ tags:
 
 ### Microservicios
 Para comprender el concepto veremos un ejemplo de proyecto son solo 2 microservicios
-![](/assets/images/OpenAPI/Pasted image 20241003142046.png)
+
+![](/assets/images/Eureka/Pasted image 20241003142046.png)
+
 El primer microservicio es **Events**, que contendrá la información de eventos de una aplicación en la que la gente se puede apuntar a diferentes eventos(deportivos, de hobbies...)
 
 Por otra parte **Bookings** contendrá las reservas realizadas por los usuarios, los cuales pueden reservar un sitio para un evento
@@ -54,7 +55,8 @@ Pongámonos en la situación de que un usuario quiere reservar una plaza para un
 ## Crear servidor Eureka
 
 En primer lugar será necesario crear un nuevo proyecto con la dependencia de ==Eureka Server==
-![](/assets/images/OpenAPI/Pasted image 20241003143031.png)
+
+![](/assets/images/Eureka/Pasted image 20241003143031.png)
 
 ---
 
@@ -100,7 +102,7 @@ public class EurekaserverApplication {
 ### Resultado
 Accediendo a `http://localhost:8071/` ya podemos ver Eureka funcionando:
 
-![](/assets/images/OpenAPI/Pasted image 20241003144642.png)
+![](/assets/images/Eureka/Pasted image 20241003144642.png)
 
 Y obviamente aún no tenemos ninguna instancia registrada.
 
@@ -169,7 +171,7 @@ Ya está toda la configuración del descubrimiento terminada, a partir de aquí 
 
 De hecho, podemos ver que al iniciar los microservicios, estos se enceuntran registrados en Eureka:
 
-![](/assets/images/OpenAPI/Pasted image 20241003165012.png)
+![](/assets/images/Eureka/Pasted image 20241003165012.png)
 
 
 ## OpenFeign
