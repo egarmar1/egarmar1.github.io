@@ -108,12 +108,12 @@ Y aunque no lo creas, solo añadiendo el starter ya tienes en cierta medida la d
 `http://localhost:8080/swagger-ui/index.html#/`(localhost:8080 ya que mi microservicio se encuentra ahí)
 
 En esta url encontrarás tu api documentada:
-<img src="../assets/Pasted image 20240930160112.png">
+<img src="../assets/images/OpenAPI/Pasted image 20240930160112.png">
 
 Vemos que aparecen nuestros dtos, nuestro controlador, nuestra api para crear eventos ...
 
 Asimismo, podemos ejecutar un request con la estructura que habíamos indicado anteriormente
-<img src="../assets/Pasted image 20240930160807.png">
+<img src="../assets/images/OpenAPI/Pasted image 20240930160807.png">
 
 
 
@@ -169,7 +169,7 @@ Encima de la clase principal de la aplicación Spring Boot incluiremos la anotac
 
 #### Resultado
 ¿Y cómo se ve esto? De la siguiente manera:
-<img src="../assets/Pasted image 20240930161831.png">
+<img src="../assets/images/OpenAPI/Pasted image 20240930161831.png">
 
 Así es como conseguimos incluir información general de la aplicación, con datos de contacto, licencia ...
 
@@ -198,7 +198,7 @@ Así indicamos que este controlador es para realizar operaciones  CRUD(Create, R
 
 
 #### Resultado
-<img src="../assets/Pasted image 20240930162739.png">
+<img src="../assets/images/OpenAPI/Pasted image 20240930162739.png">
 
 Vale bien, ahora ya se sabe para que sirve ese controlador
 
@@ -311,10 +311,10 @@ public class EventDto {
 #### Resultado final
 Ahora sí.
 Hemos conseguido una api totalmente documentada, con un ejemplo para ejecutar:
-<img src="../assets/Pasted image 20240930164209.png">
+<img src="../assets/images/OpenAPI/Pasted image 20240930164209.png">
 
 Con los distintos tipos de posibles respuestas:
-<img src="../assets/Pasted image 20240930164245.png">
+<img src="../assets/images/OpenAPI/Pasted image 20240930164245.png">
 
 Y con los dtos explicados a detalle:
-<img src="../assets/Pasted image 20240930164357.png">
+<img src="../assets/images/OpenAPI/Pasted image 20240930164357.png">
