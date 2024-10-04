@@ -25,6 +25,7 @@ tags:
   - SpringBoot
 ---
 
+![](/assets/images/OpenAPI/Pasted image 20240930160112.png)
 
 
 ## Eureka y OpenFeign
@@ -37,7 +38,7 @@ tags:
 
 ### Microservicios
 Para comprender el concepto veremos un ejemplo de proyecto son solo 2 microservicios
-![[Pasted image 20241003142046.png]]
+![](/assets/images/OpenAPI/Pasted image 20241003142046.png)
 El primer microservicio es **Events**, que contendrá la información de eventos de una aplicación en la que la gente se puede apuntar a diferentes eventos(deportivos, de hobbies...)
 
 Por otra parte **Bookings** contendrá las reservas realizadas por los usuarios, los cuales pueden reservar un sitio para un evento
@@ -53,7 +54,7 @@ Pongámonos en la situación de que un usuario quiere reservar una plaza para un
 ## Crear servidor Eureka
 
 En primer lugar será necesario crear un nuevo proyecto con la dependencia de ==Eureka Server==
-![[Pasted image 20241003143031.png]]
+![](/assets/images/OpenAPI/Pasted image 20241003143031.png)
 
 ---
 
@@ -98,7 +99,9 @@ public class EurekaserverApplication {
 
 ### Resultado
 Accediendo a `http://localhost:8071/` ya podemos ver Eureka funcionando:
-![[Pasted image 20241003144642.png]]
+
+![](/assets/images/OpenAPI/Pasted image 20241003144642.png)
+
 Y obviamente aún no tenemos ninguna instancia registrada.
 
 ## Conectar Microservicios con Eureka
@@ -166,7 +169,7 @@ Ya está toda la configuración del descubrimiento terminada, a partir de aquí 
 
 De hecho, podemos ver que al iniciar los microservicios, estos se enceuntran registrados en Eureka:
 
-![[Pasted image 20241003165012.png]]
+![](/assets/images/OpenAPI/Pasted image 20241003165012.png)
 
 
 ## OpenFeign
