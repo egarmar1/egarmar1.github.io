@@ -10,7 +10,7 @@ Y no vengo a decir que Kubernetes no sea bueno, no me malinterpreteis, solo digo
 A partir de aquí sale la duda de, sin kubernetes... ¿Cómo puedo hacer para que mis servicios se comuniquen? ¿Cómo se encuentran entre ellos? y ¿Cómo funciona el LoadBalancer aquí? 
 
 La respuesta rápida es **Eureka** y **OpenFeign**."
-date: 2024-10-03
+date: 2024-10-04
 classes: wide
 header:
   teaser: /assets/images/Eureka/eurekaIcon.png

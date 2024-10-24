@@ -3,7 +3,7 @@ layout: single
 title: Estados de las entidades en JPA
 excerpt: "Si estás utilizando JPA como especificación para obtener los datos de la base de datos y convertirlos en POJOs gracias a Hibernate, entonces DEBERÍAS comprender los distintos estados por los que pasa un objeto Entidad."
 
-date: 2024-10-03
+date: 2024-10-16
 classes: wide
 header:
   teaser: /assets/images/JPAStates/hibernate.jpg

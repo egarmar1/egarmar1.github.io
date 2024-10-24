@@ -2,7 +2,7 @@
 layout: single
 title: Documentar APIs en Spring Boot con OpenAPI
 excerpt: "¡Qué pereza!. Esta sea probablemente la primera frase que te llegue a la cabeza cuando pienses en documentar. Pero de verdad, confía en mí cuando te digo que la documentación de APIs en Spring Boot es muy sencilla, y es sencilla gracias a OpenAPI."
-date: 2024-10-03
+date: 2024-09-30
 classes: wide
 header:
   teaser: /assets/images/OpenAPI/openAPIImage.png
