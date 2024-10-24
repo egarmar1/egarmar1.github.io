@@ -206,7 +206,7 @@ public ResponseEntity<ResponseDto> updateCurrentBookingsCount(@Valid @RequestPar
 
 Vale, pero ¿Cómo puede el MS Bookings ejecutar ese endpoint? 
 - En primer lugar hay que añadir la dependencia de openFeign.
-- Y en segundo lugar añadir la anotación @FeignClient encima de la clase principal del microservicio.
+- Y en segundo lugar añadir la anotación @EnableFeignClients encima de la clase principal del microservicio.
 
 ```xml
 <dependency>  
