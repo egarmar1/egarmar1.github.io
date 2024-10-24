@@ -8,7 +8,7 @@ classes: wide
 header:
   teaser: /assets/images/Spring_Cloud_Gateway/springCloudIcon.webp
   teaser_home_page: true
-  icon: /assets/images/Spring_Cloud_Gateway/springCloudIcon.webp
+
 categories:
   - Spring Cloud
   - Spring Cloud Gateway
