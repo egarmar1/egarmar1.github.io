@@ -103,8 +103,8 @@ analytics:
 author:
   name             : "Kike García Mármol"
   avatar           : "/assets/images/avatar.png"
-  bio              : "Backend, Programming lover"
-  location         : "SPain"
+  bio              : "Backend, amante de la programación"
+  location         : "Spain"
   email            : "enrgar2001@gmail.com"
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"

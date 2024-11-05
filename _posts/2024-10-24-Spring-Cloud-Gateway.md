@@ -45,6 +45,7 @@ La primera dependencia para indicar que queremos un `Gateway Reactivo`, y la seg
 
 2. Aquí un ejemplo de un posible `application.yml`
 
+
 ```application.yml
 server:  
   port: 8072  
@@ -67,6 +68,7 @@ eureka:
     serviceUrl:  
       defaultZone: "http://localhost:8071/eureka/"  
 ```
+
 Demos un vistazo rápido por este `application.yml`:
 - `Cloud.gateway.discovery.locator.enabled`: Si lo seteamos a `true` no tenemos ni que crear rutas manualmente, ya a partir de aquí, podemos realizar peticiones al endpoint del microservicio que queramos(Qué esté registrado con Eureka obviamente): `http://localhost:8072/{NombreDelMicroservicio}/{endpoint}` 
 -  Las propiedades de `eureka` son para poder registrar el GatewayServer y también para que pueda descubrir el resto de microservicios suscritos
