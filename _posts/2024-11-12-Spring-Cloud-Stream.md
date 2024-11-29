@@ -44,7 +44,7 @@ Considero que explicar la implementación al mismo tiempo que se muestra un ejem
 ---
 
 ### Implementación en el microservicio **Mensajería**
-El MS de **mensajería** quiere estar en escucha, para que cuando se cree una nueva noticia entonces se envíe un correo a sus usuarios, para ello en el microservicio `Mensajería` :
+El MS de **mensajería** quiere estar en escucha, para que cuando se cree una nueva noticia este se entere y envíe un correo a sus usuarios, para ello en el microservicio `Mensajería` :
 1. Necesitaremos estas dependencias:
 ```java
 <dependency>  
@@ -65,7 +65,7 @@ El MS de **mensajería** quiere estar en escucha, para que cuando se cree una nu
 - La dependencia de `spring-cloud-stream` va a ser la que realize toda la configuración por detrás, tú utilizas canales(input y output) para los eventos, y te olvidas de topics, offsets, particiones ... 
 
 - Por otra parte `spring-cloud-stream-binder-kafka` conecta Apache Kafka con esta 'abstracción' que hemos conseguido con la anterior dependencia, la cual nos permitiría no solo integrar kafka, sino, también otros  sistemas de mensajería como RabbitMQ(habría que usar la dependencia `spring-cloud-stream-binder-rabbit` para ese caso)
-- `spring-cloud-stream-test-binder` simulará el funcionamiento de los binders(luego veremos qué son)
+- `spring-cloud-stream-test-binder` simulará el funcionamiento de los binders(luego veremos qué son) para el testing.
 
 2. Este microservicio podrá recibir los mensajes gracias a las **Functions** que proporciona Java. En este caso, estas funciones las podemos implementar en una carpeta que llamaremos `functions`, que ubicaremos en el paquete principal del microservicio(i.e `com.myApp.mensajeria.functions.MensajeríaFunctions`)
 
@@ -86,11 +86,12 @@ public class MensajeriaFunctions {
     public Consumer<EmailDto> sendEmail() {  
         return emailDto -> {  
                 log.info("sending Email to user " + emailDto.getRecipientEmail());  
+                ...
         };  
     }  
 }
 ```
-- Contendrá la anotación `@Configuration`. Y implementará una función **Consumer** la cual se encargará de recibir los detalles del email, para luego enviarlo al usuario(He quitado la implementación de enviar un email ya que se desvía del tema)
+- Contendrá la anotación `@Configuration`. E implementará una función **Consumer** la cual se encargará de recibir los detalles del email, para luego enviarlo al usuario(He quitado la implementación de enviar un email ya que se desvía del tema)
 
 Vale bien, hemos creado la función, pero cómo sabe Spring Cloud a qué topic/queue conectarse para poder recibir esos eventos?
 
@@ -120,7 +121,8 @@ Vayamos explicando cada parte:
 - Y por último hay que indicar donde se encuentra nuestro servicio kafka corriendo, en mi caso en el puerto localhost:9092. Lo indicamos de la siguiente manera: ``spring.cloud.stream.kafka.binder.brokers.<Instancia Kafka>`
 
 ---
-Hasta aquí ya hemos configurado totalmente el Consumer, es decir el microservicio que escucha los mensajes a través de un topic. Ahora nos queda por configurar el microservicio que envía los eventos al topic
+Hasta aquí ya hemos configurado totalmente el Consumer, es decir el microservicio que escucha los mensajes a través de un topic. Ahora nos queda por configurar el microservicio que envía los eventos(mensajes) al topic
+
 ### Implementación en el microservicio **Noticias**
 Para este ejemplo el microservicio **noticias** quiere publicar en un topic los emails a los que quiere enviar una notificación sobre esta nueva noticia, para ello en el microservicio `Noticias` :
 
