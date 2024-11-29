@@ -6,7 +6,7 @@ excerpt: "Spring Cloud Stream nos va a realizar toda la configuración necesaria
 date: 2024-11-12
 classes: wide
 header:
-  teaser: /assets/images/Spring_Cloud_Stream/logo.webp
+  teaser: /assets/images/Spring_Cloud_Stream/logo.gif
   teaser_home_page: true
 
 categories:
