@@ -46,6 +46,7 @@ Considero que explicar la implementación al mismo tiempo que se muestra un ejem
 ### Implementación en el microservicio **Mensajería**
 El MS de **mensajería** quiere estar en escucha, para que cuando se cree una nueva noticia este se entere y envíe un correo a sus usuarios, para ello en el microservicio `Mensajería` :
 1. Necesitaremos estas dependencias:
+
 ```java
 <dependency>  
     <groupId>org.springframework.cloud</groupId>  
