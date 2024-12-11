@@ -7,7 +7,7 @@ El **Circuit Breaker Pattern** es una buena solución para gestionar estos escen
 date: 2024-11-22
 classes: wide
 header:
-  teaser: /assets/images/CircuitBreaker/Pasted image 20241203162831.png
+  teaser: /assets/images/CircuitBreaker/CircuitBreakerPattern.webp
   teaser_home_page: true
 
 categories:
