@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Spring Cloud Stream
+title: Circuit Breaker Pattern en Spring Boot
 excerpt: "Denegar todas las peticiones de un microservicio durante un periodo de tiempo puede ser muy buena idea si este está teniendo problemas de conexión, o congestionado debido a que recibe un gran numero de peticiones. 
 El **Circuit Breaker Pattern** es una buena solución para gestionar estos escenarios."
 
