@@ -66,7 +66,7 @@ Este es el esquema del proyecto,`Spring Cloud Config` por su parte nos dará est
 Como vemos en el esquema, tendremos:
 - Los **microservicios** por una parte
 - El Servidor **Spring Cloud Config**
-- Un **Sistema de control de versiones** donde guardaremos los archivos de configuración. También es posible guardar los archivos localmente o en el classpath del config server(aunque pierder el auditing, versioning, seguridad ...)
+- Un **Sistema de control de versiones** donde guardaremos los archivos de configuración. También es posible guardar los archivos localmente o en el classpath del config server(aunque se pierde el auditing, versioning, seguridad ...)
 
 Vamos a ir configurándolo paso a paso para comprender de verdad cómo resuelve cada uno de los incovenientes mencionados anteriormente
 
@@ -76,20 +76,20 @@ Vamos a ir configurándolo paso a paso para comprender de verdad cómo resuelve 
 - La primera es **Config Server**.
 ![](/assets/images/Spring_Cloud_Config/Pasted image 20241216163419.png) 
 - La segunda dependencia es **Actuator**
-2. Luego, en la clase principal de la aplicación que recién acabamos de crear añadiremos la anotación **@EnableConfigServer** 
+2. Luego, en la clase principal de la aplicación que recién acabamos de crear(El config server) añadiremos la anotación **@EnableConfigServer** 
 
 ### Crear repositorio de github
 
 Antes de continuar con la conexión de los microservicios al config server vamos a crear un repositorio en github donde almacenaremos todos los archivos de configuración, para después  **conectar el Config Server al repositorio de github**.
 1. Creamos un repositorio de github e introducimos los archivos de configuración:
 ![](/assets/images/Spring_Cloud_Config/Pasted image 20241216174450.png)
-2. En este repositorio he introducido los application_prod.yml y application_qa.yml de cada microservicio. Fíjate en los nombres de los archivos que he cambiado `application` por el nombre del microservicio correspondiente. 
+2. En este repositorio he introducido los application_prod.yml y application_qa.yml de cada microservicio. Fíjate en los nombres de los archivos, he cambiado `application` por el nombre del microservicio correspondiente. 
 
 Para este ejemplo he creado solo 2 microservicios(Uno se llama events, otro eventsReviews) y cada uno de estos tiene su configuración para `producción`:
 ![](/assets/images/Spring_Cloud_Config/Pasted image 20241216180052.png)
 Y su configuración para `qa`:
 ![](/assets/images/Spring_Cloud_Config/Pasted image 20241216180104.png)
-El otro microservicio tiene el mismo código para ambos archivos de configuración, como ves es un código muy sencillo simplemente para no irnos por las ramas, pero en cada entorno habrá información distinta como bases de datos, contraseñas ...
+El otro microservicio tiene el mismo código para ambos archivos de configuración, como ves, es un código muy sencillo para no complicarnos demasiado, pero en cada entorno habrá información distinta como bases de datos, contraseñas ...
 
 Ah, y debo recalcar que este repositorio es público, pero en un entorno real obviamente será privado.
 
@@ -97,6 +97,7 @@ Ah, y debo recalcar que este repositorio es público, pero en un entorno real ob
 Ahora que ya tenemos creado el **config server** y el repositorio de github con los archivos de configuración, el siguiente paso es conectar ambos componentes
 
 1. En el application.yml del config server añadiremos lo siguiente:
+
 ```yml
 server:  
   port: 8065  
@@ -124,7 +125,7 @@ management:
 ```
 - Activaremos el perfil de `git` con la propiedad `spring.profiles.active`
 - Además, especificaremos el proyecto en el que se encuentran los archivos de configuración, con las propiedades de `spring.cloud.config.server.git`. Concretamente indicaremos la uri, la rama `main`, el tiempo máximo de espera de conexión `5`, si queremos clonar el repositorio al iniciar y así tener los archivos disponibles desde el inicio, y por último indicar que queremos hacer un git pull cada vez que solicitemos las configuraciones
-- Por último habilitaremos todos los endpoints de `/actuator` con la propiedad de **management** para poder comprobar que nos conectamos correctamente con el github
+- También habilitaremos todos los endpoints de `/actuator` con la propiedad de **management** para poder comprobar que nos conectamos correctamente con el github
 
 ##### Comprobar conexión
 La conexión entre el config server y github se puede comprobar accediendo a `http://{configServer}/{nombreMicroservicio}/{entorno}`
@@ -132,7 +133,8 @@ En nuestro caso sería: `http://localhost:8065/eventsReviews/qa`.
 Y si se nos muestra la información del archivo eventsReviews-qa.yml que se encuentra en el gitub, entonces significa que la conexión funciona correctamente
 
 
-- Tenemos el **config server** conectado con **github**, pero claro, ahora los microservicios deben  conectarse al config server.
+- Tenemos el **config server** conectado con **github**, pero claro, ahora los microservicios deben conectarse al config server.
+
 #### Conexión Microservicio - Config Server
 Tendremos que realizar estos pasos en cada microservicio al que queramos conectar con el config server(Básicamente todos los MS que tengas)
 1. Añadir la dependencia de **Config Client**:
@@ -157,9 +159,9 @@ Tendremos que realizar estos pasos en cada microservicio al que queramos conecta
 </dependencyManagement>
 ```
 
-Para saber la última versión de spring cloud puedes crear un nuevo proeycto con esta dependencia en initializr, y al clickar `Explore` verás el dependencyManagement con a última versión.
+Para saber la última versión de spring cloud, puedes crear un nuevo proyecto con esta dependencia en initializr, y al clickar `Explore` verás el dependencyManagement con la última versión.
 
-3. Por último, recuerdas que en el primer apartado hemos especificado los archivos de configuración de esta manera? 
+3. Recuerdas que en el primer apartado hemos especificado los archivos de configuración de esta manera? 
 ```yml
 spring:  
   application:  
@@ -199,7 +201,7 @@ Aunque aún enfrentamos un par de problemas:
 
 Encriptar los datos con spring cloud config es extremadamente sencillo, solo hay que seguir unos pasos:
 1. Generar una key: Crea una a través de cualquier herramienta online o inventate tu cualquier key. Por ejemplo: `m89qNuh10NEu8wrfikIL`
-2. Introduce la clave en el **application.yml** del spring cloud config server:
+2. Introduce la key en el **application.yml** del spring cloud config server:
 ```yml
 encrypt:  
   key: "m89qNuh10NEu8wrfikIL"
@@ -219,7 +221,7 @@ Esto ocurre debido a que por detrás el config server está llamando al endpoint
 El segundo problema que hemos mencionado esque hay que reinciar los microservicios para que obtengan la información cambiada del github, esto es cuanto menos inconveniente.
 
 - Lo que podemos hacer es avisar a los microservicios de un cambio en los archivos de configuración realizando un GET al endpoint `http://{microservice}/actuator/refresh`
-- Y se hace con un simple paso, que es, añadir el componente **actuator**(añadiendo su dependencia) en el microservicio, y habilitando sus endpoints:
+- Y se hace con un simple paso, que es, añadir el componente **actuator**(añadiendo su dependencia si no lo has hecho antes) en el microservicio, y habilitando sus endpoints:
 ```yml
 management:  
   endpoints:  
@@ -237,7 +239,7 @@ Aquí es cuando entra **Spring Cloud Bus**.
 
 - **Spring Cloud Bus** conectará todos los microservicios con un sistema de mensajería (como RabbitMQ, por ejemplo). 
 
-- Cuando se realiza un cambio en los archivos de configuración centralizados (almacenados en GitHub, en este caso) y se notifica a un microservicio mediante una llamada a su endpoint `/actuator/busrefresh`, el message broker distribuye un evento a través del bus para informar al resto de los microservicios conectados sobre el cambio en la configuración. Esto permite que los servicios actualicen su configuración sin necesidad de reiniciarlos manualmente.
+- Cuando se realiza un cambio en los archivos de configuración centralizados (almacenados en GitHub, en este caso) y se notifica a un microservicio mediante una llamada a su endpoint `/actuator/busrefresh`, el message broker distribuye un evento a través del bus para informar al resto de los microservicios conectados sobre el cambio en la configuración. Esto permite que los microservicios actualicen su configuración sin necesidad de reiniciarlos manualmente.
 
 
 #### Implementar Spring Cloud Bus
@@ -268,7 +270,7 @@ Y recuerda que para consectarse con rabbit es necesario añadir en el pom.xml de
 </dependency>
 ```
 
-3. Por último añadimos la dependencia de `spring cloud starter bus amqp`:
+3. Por último, añadimos la dependencia de `spring cloud starter bus amqp`:
 ```xml
 <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-bus-amqp -->
 <dependency>
@@ -280,10 +282,10 @@ Y recuerda que para consectarse con rabbit es necesario añadir en el pom.xml de
 ```
 
 
-- Ahora enviando un post al endpoint `http://{microservice}/actuator/busrefresh` de cualquier microservicio que esté conectado al message broker provocará que este junto con el resto de microservicios se actualizen con el último estado de los archivos de configuración
+- Ahora enviando un post al endpoint `http://{microservice}/actuator/busrefresh` a cualquier microservicio que esté conectado al message broker provocará que este junto con el resto de microservicios se actualizen con el último estado de los archivos de configuración
 
 ## Extras
-Podríamos seguir con Spring Cloud Config, ya que este tiene más características, como por ejemplo actualizar automáticamente todos los microservicios con el simple hecho de realizar un cambio en el github.
+Podríamos seguir con Spring Cloud Config, ya que este tiene más características, como por ejemplo, actualizar automáticamente todos los microservicios con el simple hecho de realizar un cambio en el repositorio de github.
 
 Considero que mostrando más características el tutorial se iría demasiado por las ramas.
 
