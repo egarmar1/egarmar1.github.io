@@ -7,7 +7,7 @@ excerpt: "En una aplicación con una arquitectura de microservicios realizar tod
 date: 2024-12-02
 classes: wide
 header:
-  teaser: /assets/images/CircuitBreaker/CircuitBreakerPattern.webp
+  teaser: /assets/images/Spring_Cloud_Config/Pasted image 20241216163110.png
   teaser_home_page: true
 
 categories:
