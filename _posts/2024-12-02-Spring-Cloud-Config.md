@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Circuit Breaker Pattern en Spring Boot
+title: Spring Cloud Config Server con Github
 excerpt: "En una aplicación con una arquitectura de microservicios realizar todas las configuraciones en cada uno de los microservicios por separado puede ser poco conveniente, inseguro y mucho menos escalable. Déjame que te lo demuestre.
 "
 
@@ -27,6 +27,7 @@ En una aplicación con una arquitectura de microservicios realizar todas las con
 Primero mostremos la situación de un proyecto sin Spring Cloud Config, para luego mostrar el proyecto con Spring Cloud Config Server y observar cómo nos ayudará.
 
 - En este microservicio tenemos un `resources/application.yml`:
+
 ```yml
 server:  
   port: 8030  
@@ -42,6 +43,7 @@ spring:
     active:  
       "qa"  
 ```
+
 Este application.yml se extiende con otro application.yml dependiendo de si es un entorno de **qa**(`application_qa.yml`) o un entorno de **producción**(`application_prod.yml`). Ahora como vemos en `spring.profiles.active=qa` hemos añadido el application_qa.yml.
 
 Esto no es conveniente, vemos varios problemas:
