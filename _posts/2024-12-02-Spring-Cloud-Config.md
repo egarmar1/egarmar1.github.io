@@ -86,9 +86,13 @@ Antes de continuar con la conexión de los microservicios al config server vamos
 2. En este repositorio he introducido los application_prod.yml y application_qa.yml de cada microservicio. Fíjate en los nombres de los archivos, he cambiado `application` por el nombre del microservicio correspondiente. 
 
 Para este ejemplo he creado solo 2 microservicios(Uno se llama events, otro eventsReviews) y cada uno de estos tiene su configuración para `producción`:
+
 ![](/assets/images/Spring_Cloud_Config/Pasted image 20241216180052.png)
+
 Y su configuración para `qa`:
+
 ![](/assets/images/Spring_Cloud_Config/Pasted image 20241216180104.png)
+
 El otro microservicio tiene el mismo código para ambos archivos de configuración, como ves, es un código muy sencillo para no complicarnos demasiado, pero en cada entorno habrá información distinta como bases de datos, contraseñas ...
 
 Ah, y debo recalcar que este repositorio es público, pero en un entorno real obviamente será privado.
@@ -97,6 +101,7 @@ Ah, y debo recalcar que este repositorio es público, pero en un entorno real ob
 Ahora que ya tenemos creado el **config server** y el repositorio de github con los archivos de configuración, el siguiente paso es conectar ambos componentes
 
 1. En el application.yml del config server añadiremos lo siguiente:
+
 
 ```yml
 server:  
